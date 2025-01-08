@@ -34,15 +34,27 @@ match_indent = true
 times = 1
 
 [[patches]]
+[patches.module]
+source = "json.lua"
+before = "game.lua"
+name = "json"
+
+[[patches]]
+[patches.module]
+source = "websocket.lua"
+before = "game.lua"
+name = "websocket"
+
+[[patches]]
+[patches.module]
+source = "vibrationThread.lua"
+before = "game.lua"
+name = "vibrationThread"
+
+[[patches]]
 [patches.copy]
 target = "game.lua"
 position = "append"
 sources = [
     "vibrator.lua"
 ]
-
-[[patches]]
-[patches.module]
-source = "json.lua"
-before = "game.lua"
-name = "json"
