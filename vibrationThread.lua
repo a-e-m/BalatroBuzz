@@ -4,10 +4,15 @@ require "love.filesystem"
 CHANNEL_IN = love.thread.getChannel("vibration_channel_in")
 CHANNEL_OUT = love.thread.getChannel("vibration_channel_out")
 
+
 require('engine.object')
 local json = require('Mods.BalatroBuzz.json')
 local websocket = require("Mods.BalatroBuzz.websocket")
-local client = websocket.new("127.0.0.1", 12345, "/")
+
+local intiface_host = CHANNEL_IN:demand()
+local intiface_port = CHANNEL_IN:demand()
+CHANNEL_OUT:push('using Intiface host '..intiface_host..':'..intiface_port)
+local client = websocket.new(intiface_host, intiface_port, "/")
 
 local Intiface = Object:extend()
 

@@ -8,6 +8,10 @@ function update_vibrator(strength)
             out_channel = love.thread.getChannel("vibration_channel_out"),
         }
         vibrationThread:start()
+        
+        -- Send Intiface connection info to vibration thread
+        G.VIBRATION_MANAGER.in_channel:push('{{lovely:intiface_host}}')
+        G.VIBRATION_MANAGER.in_channel:push('{{lovely:intiface_port}}')
     end
 
     G.LAST_VIBRATE = G.LAST_VIBRATE or 0
