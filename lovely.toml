@@ -7,7 +7,8 @@ priority = 0
 # $intensity will be replaced by the flame intensity multipled by the intensity_scaling, with the intensity_rounding function applied
 [vars]
 vibrate_interval = "1" # in seconds
-vibrate_url = "http://10.0.0.49:20010/command" # If you're using Lovense, update this based on the info shown in the app under Discover -> Game Mode -> "Enable LAN"
+vibrate_host = "10.0.0.49" # If the automatic host finding doesn't work, update this based on the info shown in the app under Discover -> Game Mode -> "Enable LAN"
+vibrate_port = "20010" # default port for Lovense app
 intensity_scaling = "20" # Before scaling, the default intensity is between 0.0 and 1.0
 intensity_rounding = "floor" # Valid values: floor, ceil, round, none
 vibrate_payload = '''
@@ -39,3 +40,9 @@ position = "append"
 sources = [
     "vibrator.lua"
 ]
+
+[[patches]]
+[patches.module]
+source = "json.lua"
+before = "game.lua"
+name = "json"
