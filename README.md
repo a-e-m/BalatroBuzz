@@ -9,5 +9,5 @@ Buttplug integration mod for Balatro
 4. Finally, open Balatro and verify that your device vibrates whenever there are flames appearing by your current score.
 
 # Troubleshooting
-This project currently assumes you're running Balatro and Intiface Central on the same machine
-This currently uses whatever device has index 0 in Intiface Central (TODO: allow users to choose which device to use)
+* This project currently assumes you're running Balatro and Intiface Central on the same machine, and if you're not you may need to update `intiface_host` in `lovely.toml`
+* This currently uses whatever device has index 0 in Intiface Central (TODO: allow users to choose which device to use)
