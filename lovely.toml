@@ -1,0 +1,41 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+# The mod will POST the vibrate_payload to vibrate_url once per vibrate_interval seconds (if there are currently flames by your current score)
+# $intensity will be replaced by the flame intensity multipled by the intensity_scaling, with the intensity_rounding function applied
+[vars]
+vibrate_interval = "1" # in seconds
+vibrate_url = "http://10.0.0.49:20010/command" # If you're using Lovense, update this based on the info shown in the app under Discover -> Game Mode -> "Enable LAN"
+intensity_scaling = "20" # Before scaling, the default intensity is between 0.0 and 1.0
+intensity_rounding = "floor" # Valid values: floor, ceil, round, none
+vibrate_payload = '''
+{
+    "command": "Function",
+    "action": "Vibrate:$intensity",
+    "timeSec": 1,
+    "apiVer": 1
+}
+''' # Lovense API format, see https://developer.lovense.com/docs/standard-solutions/standard-api.html#by-local-application
+
+[[patches]]
+[patches.pattern]
+target = "game.lua"
+pattern = "update_canvas_juice(dt)"
+position = "after"
+payload = '''
+if (G.ARGS.score_intensity.flames > 0) then
+    update_vibrator(G.ARGS.score_intensity.flames)
+end
+'''
+match_indent = true
+times = 1
+
+[[patches]]
+[patches.copy]
+target = "game.lua"
+position = "append"
+sources = [
+    "vibrator.lua"
+]
