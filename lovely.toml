@@ -6,6 +6,7 @@ priority = 0
 [vars]
 intiface_host = "127.0.0.1" # May need to change this if you're running Balatro and Intiface Central on different machines
 intiface_port = "12345" # May need to change this if you're not using the default port for Intiface
+zero_threshold = "0.03" # Intensity values below the threshold will just be set to zero 
 
 [[patches]]
 [patches.pattern]

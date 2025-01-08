@@ -19,7 +19,7 @@ function update_vibrator(strength)
         local out = G.VIBRATION_MANAGER.out_channel:pop()
         if out then print(out) end
 
-        if strength < 0.01 then strength = 0 end
+        if strength < {{lovely:zero_threshold}} then strength = 0 end
 
         G.VIBRATION_MANAGER.in_channel:push(strength)
         G.LAST_VIBRATE = love.timer.getTime()
