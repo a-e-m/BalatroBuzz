@@ -1,3 +1,5 @@
+The buttplug.io version is on this branch: https://github.com/a-e-m/BalatroBuzz/tree/buttplug-io
+
 # BalatroBuzz
 Buttplug integration mod for Balatro
 
