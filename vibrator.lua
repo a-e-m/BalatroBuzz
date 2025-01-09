@@ -11,7 +11,8 @@ function update_vibrator(strength)
         
         -- Send Intiface connection info to vibration thread
         G.VIBRATION_MANAGER.in_channel:push('{{lovely:intiface_host}}')
-        G.VIBRATION_MANAGER.in_channel:push('{{lovely:intiface_port}}')
+        G.VIBRATION_MANAGER.in_channel:push({{lovely:intiface_port}})
+        G.VIBRATION_MANAGER.in_channel:push({{lovely:device_index}})
     end
 
     G.LAST_VIBRATE = G.LAST_VIBRATE or 0

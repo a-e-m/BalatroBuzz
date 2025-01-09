@@ -4,14 +4,17 @@ require "love.filesystem"
 CHANNEL_IN = love.thread.getChannel("vibration_channel_in")
 CHANNEL_OUT = love.thread.getChannel("vibration_channel_out")
 
-
 require('engine.object')
 local json = require('Mods.BalatroBuzz.json')
 local websocket = require("Mods.BalatroBuzz.websocket")
 
 local intiface_host = CHANNEL_IN:demand()
 local intiface_port = CHANNEL_IN:demand()
+local device_index = CHANNEL_IN:demand()
+
 CHANNEL_OUT:push('using Intiface host '..intiface_host..':'..intiface_port)
+CHANNEL_OUT:push('using device index '..device_index)
+
 local client = websocket.new(intiface_host, intiface_port, "/")
 
 local Intiface = Object:extend()
@@ -71,7 +74,7 @@ function Intiface:vibrate(intensity)
     self:send_json({
         VibrateCmd = {
             Id = self.message_id,
-            DeviceIndex = 0,
+            DeviceIndex = device_index,
             Speeds = {{ Index = 0, Speed = intensity }}
         }
     })

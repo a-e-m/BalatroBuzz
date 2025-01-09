@@ -10,4 +10,4 @@ Buttplug integration mod for Balatro
 
 # Troubleshooting
 * This project currently assumes you're running Balatro and Intiface Central on the same machine, and if you're not you may need to update `intiface_host` in `lovely.toml`
-* This currently uses whatever device has index 0 in Intiface Central (TODO: allow users to choose which device to use)
+* By default this uses whatever device has index 0 in Intiface Central. You can update `device_index` in `lovely.toml` to change this
