@@ -10,10 +10,8 @@ local websocket = require("Mods.BalatroBuzz.websocket")
 
 local intiface_host = CHANNEL_IN:demand()
 local intiface_port = CHANNEL_IN:demand()
-local device_index = CHANNEL_IN:demand()
 
 CHANNEL_OUT:push('using Intiface host '..intiface_host..':'..intiface_port)
-CHANNEL_OUT:push('using device index '..device_index)
 
 local client = websocket.new(intiface_host, intiface_port, "/")
 
@@ -21,6 +19,7 @@ local Intiface = Object:extend()
 
 function Intiface:init()
     self.message_id = 1
+    self.device_index = nil
     self.ready = false
     self.callback_table = {}
 end
@@ -74,7 +73,7 @@ function Intiface:vibrate(intensity)
     self:send_json({
         VibrateCmd = {
             Id = self.message_id,
-            DeviceIndex = device_index,
+            DeviceIndex = self.device_index,
             Speeds = {{ Index = 0, Speed = intensity }}
         }
     })
@@ -84,6 +83,7 @@ function Intiface:callback(message_type, message_id, message)
     CHANNEL_OUT:push(message_type.." message: "..json.encode(message))
     local callback = self.callback_table[message_id]
     if callback then callback(message) end
+    self.callback_table[message_id] = nil
 end
 
 local buttplugClient = Intiface()
@@ -102,7 +102,17 @@ end
 function client:onopen()
     buttplugClient:connect(function ()
         buttplugClient:scan(function ()
-            buttplugClient:get_device_list(function()
+            buttplugClient:get_device_list(function(device_list)
+                local devices = device_list.Devices
+                local device = devices[1]
+                if not device then 
+                    CHANNEL_OUT:push('Could not find any devices')
+                    return
+                end
+
+                local deviceName = device.DeviceName
+                buttplugClient.device_index = device.DeviceIndex
+                CHANNEL_OUT:push('Using device: '..deviceName..' with device index '..buttplugClient.device_index)
                 buttplugClient.ready = true
                 CHANNEL_OUT:push("Intiface ready!")
             end)
