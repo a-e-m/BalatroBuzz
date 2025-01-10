@@ -8,6 +8,8 @@ Buttplug integration mod for Balatro
 3. Then, you'll need to install and run Intiface Central: https://intiface.com/central/
 4. Finally, open Balatro and verify that your device vibrates whenever there are flames appearing by your current score.
 
+Alternately, take a look at these instructions on the buttplug.io forums: https://discuss.buttplug.io/t/balatrobuzz-balatro-buttplug-io-mod-installation-tutorial/534 
+
 # Troubleshooting
 * This project currently assumes you're running Balatro and Intiface Central on the same machine, and if you're not you may need to update `intiface_host` in `lovely.toml`
 * By default this uses the first device returned from Intiface Central
