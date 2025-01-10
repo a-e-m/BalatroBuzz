@@ -15,3 +15,4 @@ Buttplug.io integration mod for Balatro
 # Troubleshooting
 * This project currently assumes you're running Balatro and Intiface Central on the same machine, and if you're not you may need to update `intiface_host` in `lovely.toml`
 * By default this uses the first device returned from Intiface Central
+* If you see an error like `Websocket server accept error: Protocol(HttparseError(Version))` in Intiface Central, this is NOT an issue with this particular mod. The fix is updating to the latest version of https://github.com/Steamodded/smods
