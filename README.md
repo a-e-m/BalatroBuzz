@@ -1,7 +1,8 @@
 The old Lovense version is on this branch: https://github.com/a-e-m/BalatroBuzz/tree/lovense
+The main branch now has the buttplug.io integration rather than Lovense
 
 # BalatroBuzz
-Buttplug integration mod for Balatro
+Buttplug.io integration mod for Balatro
 
 # Installation
 
