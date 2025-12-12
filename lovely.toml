@@ -13,7 +13,7 @@ zero_threshold = "0.03" # Intensity values below the threshold will just be set 
 target = "game.lua"
 pattern = "update_canvas_juice(dt)"
 position = "after"
-payload = "update_vibrator(G.ARGS.score_intensity.flames)"
+payload = "update_vibrator()"
 
 match_indent = true
 times = 1
